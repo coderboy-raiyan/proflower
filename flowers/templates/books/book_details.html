@@ -14,13 +14,14 @@
                     <p class="text-sm">
                         {{flower.description}}
                     </p>
+                    <p class="text-3xl font-semibold">Price : $ {{flower.borrowing_price|intcomma }}</p>
                     <div class="">
                         {% for category in flower.categories.all %}
                             <span class="inline-block bg-green-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 ">#{{ category.name }}</span>
                         {% endfor %}
                     </div>
                    {% if request.user.is_authenticated  %}
-                   <a role="button" href="{%url 'borrow' flower.id%}" class="text-lg block hover:bg-indigo-800 font-bold bg-indigo-600 py-2 px-5 text-white font-medium rounded lg:w-2/5">Price : $ {{flower.borrowing_price|intcomma }}</a>
+                   <a role="button" href="{%url 'borrow' flower.id%}" class="text-lg block hover:bg-indigo-800 font-bold bg-indigo-600 py-2 px-5 text-white font-medium rounded w-[20%]">Buy now </a>
                    {% endif %}
                 </div>
             </div>

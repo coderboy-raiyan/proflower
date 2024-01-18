@@ -65,7 +65,7 @@ class DepositView(TransactionViewMixin):
 
 class BorrowView(TransactionViewMixin):
     form_class = BorrowForm
-    title = "Borrow flower"
+    title = "Buy flower"
 
     def get_initial(self):
         id = self.kwargs['id']
