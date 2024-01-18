@@ -31,7 +31,7 @@ class UserSignUpView(FormView):
             token = token,
             user = user
         )
-        confirm_link = f"http://localhost:8000/customers/activate/{uid}/{token}"
+        confirm_link = f"https://flower-sell.onrender.com/customers/activate/{uid}/{token}"
         send_transaction_emails({"first_name": user.first_name, "last_name": user.last_name},user.email, "Please verify your email to activate your account", f"Thanks for creating an account on our platform. click the below link to verify your account {confirm_link}")
         messages.success(self.request, "Please check your email and verify")
         return super().form_valid(form)
