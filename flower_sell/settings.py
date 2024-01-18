@@ -35,8 +35,8 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS=[]
+ALLOWED_HOSTS = ["https://flower-sell.onrender.com"]
+CSRF_TRUSTED_ORIGINS=["https://flower-sell.onrender.com"]
 
 # Application definition
 
