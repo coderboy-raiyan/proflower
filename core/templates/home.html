@@ -28,6 +28,7 @@
             <img class="w-full h-[200px] object-contain block py-4" src="{{flower.image.url}}" alt="Sunset in the mountains">
             <div class="px-6 py-4">
             <div class="text-sm text-[#0F1111]">{{flower.title}}</div>
+            <p class="text-sm font-bold py-2">Qunatity : {{flower.quantity}}</p>
             <p class="text-gray-700 text-gray-900 font-medium my-4">
                {{flower.description | truncatechars:30}} <a href="{%url 'book_details' flower.id %}" class="text-green-600 underline">Details</a>
             </p>

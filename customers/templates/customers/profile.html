@@ -112,9 +112,9 @@
 
 <section>
     <div class="my-10 py-3 px-4 bg-gray-100 rounded-xl shadow-lg border h-full container mx-auto">
-        <h1 class="font-bold text-3xl text-center pb-5 pt-2">Borrow Report</h1>
+        <h1 class="font-bold text-3xl text-center pb-5 pt-2">Order History</h1>
         <hr />
-        <h1 class="container mx-auto text-lg font-bold underline">Total Books : {{borrows | length}}</h1>
+        <h1 class="container mx-auto text-lg font-bold underline">Total Orders : {{borrows | length}}</h1>
         <table
           class="table-auto mx-auto w-full px-5 rounded-xl mt-8 border dark:border-neutral-500"
         >
@@ -123,7 +123,7 @@
               class="bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-md py-2 px-4 text-white font-bold"
             >
               <th class="px-4 py-2">Date</th>
-              <th class="px-4 py-2">Qty</th>
+            
               <th class="px-4 py-2">Order Status</th>
               
               <th class="px-4 py-2">Amount</th>
@@ -138,9 +138,7 @@
               <td class="px-4 py-2">
                 {{ borrow.timestamp|date:"F d, Y h:i A" }}
               </td>
-              <td class="px-4 py-2">
-                {{ borrow.flower.quantity}}
-              </td>
+             
             <td class="px-4 py-3 text-s border">
                 <span
                   class="px-2 py-1 font-bold leading-tight rounded-sm {% if transaction.get_transaction_type_display == 'Withdrawal' %} text-red-700 bg-red-100 {% else %} text-green-700 bg-green-100 {% endif %}"

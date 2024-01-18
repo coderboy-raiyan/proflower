@@ -89,10 +89,15 @@ class BorrowView(TransactionViewMixin):
         id = self.kwargs['id']
         flower = FlowerModel.objects.get(id=id)
         # Get the amount from the form
+        if flower.quantity <= 0:
+            messages.error(self.request, "Sorry this flower is not available")
+            return redirect("profile")
+        
         amount = flower.borrowing_price
         flower.quantity = flower.quantity - 1
-        flower.save()
+        flower.save(update_fields=['quantity'])
 
+        
         if customer.balance < amount:
             messages.error(self.request, "You don't have sufficient money")
             return redirect("profile")

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .forms import UserSignUpForm, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.db.models import Q
 from django.contrib.auth.views import LoginView
 from django.views.generic import View
 from transactions.models import TransactionModel
@@ -62,7 +63,10 @@ class UserProfileView(LoginRequiredMixin, View):
 
     def get(self, request):
         form = UserUpdateForm(instance=request.user)
-        borrows = TransactionModel.objects.filter(customer=self.request.user.customer)
+        borrows = TransactionModel.objects.filter(
+            Q(customer=self.request.user.customer, transaction_type=PENDING) |
+            Q(customer=self.request.user.customer, transaction_type=COMPLETED)
+        )
         return render(request, self.template_name, {"form": form, "borrows": borrows})
 
     def post(self, request):
