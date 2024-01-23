@@ -4,17 +4,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, View
 from .models import TransactionModel
 from .forms import DepositForm, BorrowForm
-from .constants import DEPOSIT, RETURN, PENDING
+from .constants import DEPOSIT, RETURN, PENDING, COMPLETED
 from django.contrib import messages
 from django.urls import reverse_lazy
 from flowers.models import FlowerModel
+from django.shortcuts import render, redirect
 from email_system.utils.email import send_transaction_emails
+from django.db.models import Q
+
 # Create your views here.
 
 
 class TransactionViewMixin(LoginRequiredMixin, CreateView):
     template_name = "transactions/transaction_form.html"
     success_url = reverse_lazy("home")
+
     model = TransactionModel
     title = ""
 
@@ -143,3 +147,17 @@ class ReturnBookView(LoginRequiredMixin, View):
             f"""Your flower amount ${transaction.amount} has been refunded""")
 
         return redirect("profile")
+
+
+
+class OrderHistoryView(LoginRequiredMixin, View):
+    template_name = "transactions/order_history.html"
+
+    def get(self, request):
+        borrows = TransactionModel.objects.filter(
+            Q(customer=self.request.user.customer, transaction_type=PENDING) |
+            Q(customer=self.request.user.customer, transaction_type=COMPLETED)
+        )
+        return render(request, self.template_name, {"borrows": borrows})
+
+  

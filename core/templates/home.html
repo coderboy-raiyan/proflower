@@ -4,42 +4,63 @@
     {% include "hero.html" %}
 
     {% comment %} Category List {% endcomment %}
-   <section class="py-10 bg-[#FBEDEB]">
-    <h1  class="drop-shadow text-center mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">Flowers and Categories</h1>
-        <ul class="container mx-auto flex jusity-between items-center gap-4 flex-wrap">
-            <li class="border border-gray-900 text-sm font-bold rounded hover:text-white hover:bg-green-600 border-2 capitalize py-2 px-4 transition hover:border-green-600">
-                <a href="{%url "home"%}">All</a>
-            </li>
-            {% for cate in categories %}
-                <li class="border border-gray-900 text-sm font-bold rounded hover:text-white hover:bg-green-600 border-2 capitalize py-2 px-4 transition hover:border-green-600">
-                    <a href="{%url 'flower_slug' cate.slug%}">{{cate.name}}</a>
-                </li>
-            {% endfor %}
-        </ul>
-   </section>
-
-
-   {% comment %} Books {% endcomment %}
-   <section class="bg-[#FBEDEB]">
-       <h1 class="container mx-auto text-lg font-bold underline">Total Flowers : {{flowers | length}}</h1>
-    <div class="container mx-auto grid lg:grid-cols-4 grid-cols-1 gap-4 py-10 ">
-        {% for flower in flowers %}
-        <div class="max-w-sm  mx-auto  rounded-lg overflow-hidden shadow-lg border bg-white">
-            <img class="w-full h-[200px] object-contain block py-4" src="{{flower.image.url}}" alt="Sunset in the mountains">
-            <div class="px-6 py-4">
-            <div class="text-sm text-[#0F1111]">{{flower.title}}</div>
-            <p class="text-sm font-bold py-2">Qunatity : {{flower.quantity}}</p>
-            <p class="text-gray-700 text-gray-900 font-medium my-4">
-               {{flower.description | truncatechars:30}} <a href="{%url 'book_details' flower.id %}" class="text-green-600 underline">Details</a>
-            </p>
-            </div>
-            <div class="px-6  pb-2">
-                {% for category in flower.categories.all %}
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ category.name }}</span>
-                {% endfor %}
+   <section class="py-10 bg-gray-100 ">
+    <h1  class="drop-shadow text-center mt-2 mb-16 text-4xl font-serif">The best sellers</h1>
+    
+        <div class="gap-x-4 max-w-7xl mx-auto">
+           <div class="flex justify-center">
+         
+            <div class="dropdown dropdown-hover w-[20%]">
+                <div tabindex="0" role="button" class="btn m-1 bg-white w-full flex"><span>Categories</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                  </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
+                    <li class="border-b hover:text-green-600">
+                        <a class="capitalize" href="{%url "home"%}">All</a>
+                    </li>
+                    {% for cate in categories %}
+                        <li  class="border-b hover:text-green-600">
+                            <a class="capitalize" href="{%url 'flower_slug' cate.slug%}">{{cate.name}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+              </div>
+            <ul class="mt-10 ml-4 space-y-4">
+               
+            </ul>
+           </div>
+    
+            <div class="col-span-5">
+        
+               
+             <div class="container mx-auto grid lg:grid-cols-4 grid-cols-1 gap-4">
+                 {% for flower in flowers %}
+                 <div class="max-w-sm  mx-auto  rounded-lg overflow-hidden shadow-lg border bg-white">
+                     <img class="w-full h-[200px] object-contain block py-4" src="{{flower.image.url}}" alt="Sunset in the mountains">
+                     <div class="px-6 py-4">
+                     <div class="text-sm text-[#0F1111]">{{flower.title}}</div>
+                     <p class="text-sm font-bold py-2">Qunatity : {{flower.quantity}}</p>
+                     <p class="text-gray-600 py-2">Price : ${{flower.borrowing_price}}</p>
+                     <p class="text-gray-700 text-gray-900 font-medium my-4">
+                        {{flower.description | truncatechars:30}} <a href="{%url 'book_details' flower.id %}" class="text-green-600 underline">Details</a>
+                     </p>
+                     </div>
+                     <div class="px-6  pb-2">
+                         {% for category in flower.categories.all %}
+                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ category.name }}</span>
+                         {% endfor %}
+                     </div>
+                 </div>
+             {% endfor %}
+             </div>
             </div>
         </div>
-    {% endfor %}
-    </div>
    </section>
+
+   {% comment %} Flower 1 {% endcomment %}
+   {% include "flower_section_1.html" %}
+
+   
+   
 {% endblock content %}

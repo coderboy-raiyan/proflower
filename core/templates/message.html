@@ -1,12 +1,14 @@
-{% for i in messages %}
+{% if messages %}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    Swal.fire({
-        title: 'Status',
-        text: '{{i}}',
-        icon: '{{i.tags}}',
-        confirmButtonText: 'OK'
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+        Swal.fire({
+            title: 'Status',
+            text: '{{ message }}',
+            icon: '{{ message.tags }}',
+            confirmButtonText: 'OK'
+        });
+        {% endfor %}
     });
-  });
 </script>
-{% endfor %}
+{% endif %}

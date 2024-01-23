@@ -39,6 +39,7 @@ ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS=["https://flower-sell.onrender.com"]
 
 # Application definition
+LOGIN_URL = 'signin'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

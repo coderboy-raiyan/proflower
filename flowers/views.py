@@ -1,5 +1,5 @@
 from typing import Any
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, View, TemplateView
 from .models import FlowerModel, ReviewModel
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ReviewForm
@@ -63,3 +63,8 @@ class BookReviewView(LoginRequiredMixin, CreateView):
         else:
             messages.success(self.request, "Thanks for your valuable Reviews")
         return super().form_valid(form)
+
+
+
+class OurServicesView(TemplateView):
+    template_name = "books/services.html"
