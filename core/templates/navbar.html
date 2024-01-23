@@ -1,32 +1,32 @@
 {% load humanize %}
-<div class=" bg-base-100 border-b-2 border-gray-900">
+<div class=" sticky z-10 top-0 bg-base-100 border-b-2 border-gray-900">
    <div class="navbar max-w-7xl mx-auto py-4 ">
     <div class="navbar-start lg:w-[20%] md:w-[20%]">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </div>
-          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabindex="0" class="menu menu-sm dropdown-content space-y-2 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li><a href="{%url 'deposit'%}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-red-900 hover:font-black mr-4">
                 Deposit
             </a></li>
             <li><a>Services</a></li>
         <li><a>About us</a></li>
+        {% if request.user.is_authenticated %}
         <li><a>Order History</a></li>
         <li><a> (Wallet : ${{request.user.customer.balance|intcomma}})</a></li>
-        {% if request.user.is_authenticated %}
         <li>
          <details >
            <summary>Dashboard</summary>
            <ul class="p-2">
              <li>  <a href="{%url 'profile'%}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Profile</a></li>
-             
+             <li><a  href="{%url 'logout'%}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Logout</a></li>
            </ul>
          </details>
        </li>
        {% else %}
        <div>
-         <a href="{%url 'signin'%}"   class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Login</a>
+         <a href="{%url 'signin'%}"   class="mx-2  inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Login</a>
      </div>
      <div>
          <a href="{%url 'signup'%}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Register</a>
@@ -39,7 +39,7 @@
         </a>
       </div>
       <div class="navbar-end lg:w-[80%] md:w-[80%] hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-horizontal px-1 space-y-2 lg:space-y-0 md:space-y-0">
           <li><a href="{%url 'deposit'%}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-red-900 hover:font-black mr-4">
             Deposit
         </a></li>
