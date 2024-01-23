@@ -66,5 +66,31 @@ class BookReviewView(LoginRequiredMixin, CreateView):
 
 
 
+services = [
+    {
+        "title"  : "Sympathy",
+        "image" : "https://images.ctfassets.net/ztm44xofsurz/6EYaJiXQeeQqPzE0emv8HS/fd75531be1f5e25f78ead017b07bbac3/4492_PF_Summer23_June_Sympathy_CategoryTile.jpg?w=384&fm=webp&q=70",
+    },
+    {
+        "title"  : "Birthday",
+        "image" : "https://images.ctfassets.net/ztm44xofsurz/1i5dX5yARLOPyL4I9vPm1q/53f8e6f1f72a334d1aeff0adf864f502/4492_PF_Summer23_June_Baby_CategoryTile.jpg?w=384&fm=webp&q=70",
+    },
+    {
+        "title"  : "Get Well",
+        "image" : "https://images.ctfassets.net/ztm44xofsurz/4SWUq35GNDKsjpe0lNhHQu/557e3bb7bbb781bd4df06a7a1706c422/4492_PF_Summer23_June_ThinkingOfYou_CategoryTile.jpg?w=384&fm=webp&q=70",
+    },
+    {
+        "title"  : "Just because",
+        "image" : "https://images.ctfassets.net/ztm44xofsurz/4OPuA4FYgCg3gDkVWLujq0/3599c5376ff23c3b5d9e5dca70bd1ffb/4492_PF_Summer23_June_Birthday_CategoryTile.jpg?w=384&fm=webp&q=70",
+    },
+]
+
 class OurServicesView(TemplateView):
     template_name = "books/services.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'services': services
+        })
+        return context

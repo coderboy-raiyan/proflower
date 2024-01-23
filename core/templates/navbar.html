@@ -44,14 +44,14 @@
             Deposit
         </a></li>
         <li><a href="{%url 'our_services'%}">Services</a></li>
-        <li><a>About us</a></li>
+        <li><a href="{%url 'about_us'%}">About us</a></li>
         {% if request.user.is_authenticated %}
         <li><a  href="{%url 'order_history'%}">Order History</a></li>
         <li><a> (Wallet : ${{request.user.customer.balance|intcomma}})</a></li>
         <li>
         <details >
           <summary>Dashboard</summary>
-          <ul class="p-2">
+          <ul class="p-2 z-10">
             <li>  <a href="{%url 'profile'%}" class="mx-2 my-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Profile</a></li>
             <li><a  href="{%url 'logout'%}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white bg-green-600 hover:bg-green-700">Logout</a></li>
           </ul>

@@ -27,3 +27,7 @@ class Home(ListView):
         })
 
         return context
+
+
+class AboutUsView(TemplateView):
+    template_name = "about_us.html"

@@ -115,11 +115,11 @@ class BorrowView(TransactionViewMixin):
         send_transaction_emails(
             self.request.user,
             self.request.user.email,
-            f"One flower has been borrowed by Customer : {customer.customer_id}",
-            f"""You have successfully borrowed this flower : ({flower.title}) cost of : ${amount}""")
+            f"One flower has been bought by Customer : {customer.customer_id}",
+            f"""You have successfully borrowed this flower : ({flower.title}) cost of : ${amount}. Please wait for the admin to confirm """)
 
-        messages.success(self.request, f""" flower has been borrowed and your current balance is ${
-                         customer.balance} """)
+        messages.success(self.request, f""" flower has been bought and your current balance is ${
+                         customer.balance}. Wait for the admin response""")
 
         return super().form_valid(form)
 

@@ -5,24 +5,29 @@
     <section class="py-10 bg-[#FBEDEB]">
         <div class="container mx-auto bg-white rounded-lg">
             <div class="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 gap-y-5 py-10  shadow-lg p-10">
-                <div class="mx-auto ">
+                <div class="mx-auto w-[70%]">
                     <img class="border p-3 shadow" src="{{flower.image.url}}" alt="">
                 </div>
     
                 <div class="mx-auto space-y-4">
-                    <h1 class="text-xl font-semibold">{{flower.title}}</h1>
+                    <h2 class="font-bold text-gray-700">SAME DAY DELIVERY</h2>
+                    <h1 class="text-2xl">{{flower.title}}</h1>
+                    <p class="text-xl">$ {{flower.borrowing_price|intcomma }}</p>
                     <p class="text-sm">
                         {{flower.description}}
                     </p>
-                    <p class="text-3xl font-semibold">Price : $ {{flower.borrowing_price|intcomma }}</p>
+                    <p>or 4 payments of $18.75 by <span class="bg-[#B2FCE4] py-2 px-2 rounded-full text-xs font-bold">@stripe</span>
+
+                    </p>
+                    <p>Get FREE shipping on this order by becoming a ProPerks member.</p>
                     <div class="">
                         {% for category in flower.categories.all %}
                             <span class="inline-block bg-green-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 ">#{{ category.name }}</span>
                         {% endfor %}
                     </div>
-                   {% if request.user.is_authenticated  %}
-                   <a role="button" href="{%url 'borrow' flower.id%}" class="text-lg block hover:bg-indigo-800 font-bold bg-indigo-600 py-2 px-5 text-white font-medium rounded w-[20%]">Buy now </a>
-                   {% endif %}
+                  
+                   <a role="button" href="{%url 'borrow' flower.id%}" class="text block hover:bg-gray-800 font-bold bg-gray-900 py-2 px-5 text-white font-medium rounded w-[20%]">Buy now </a>
+                 
                 </div>
             </div>
 

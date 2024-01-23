@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import Home
+from core.views import Home, AboutUsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name="home"),
+    path('about-us', AboutUsView.as_view(), name="about_us"),
     path("flowers/<slug:flower_slug>", Home.as_view(), name="flower_slug"),
     path('customers/', include("customers.urls")),
     path("flowers/", include("flowers.urls")),
