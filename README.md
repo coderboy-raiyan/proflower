@@ -1,6 +1,6 @@
 ### Flower Sales Website
-
-#### Please wait for 10s to load the full site 
+---
+#### Please wait a few seconds to view the site because of onrender free deployment.
 [Visit the site](https://flower-sell.onrender.com) 
 ---
 This project aims to create a vibrant marketplace for buying and selling flowers. Users can list flowers for sale, and potential buyers can easily browse and purchase them. The platform provides features for both users and administrators.
