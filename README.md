@@ -46,10 +46,3 @@ This project aims to create a vibrant marketplace for buying and selling flowers
 
 ---
 
-### Deployment and Submission
-
-- Deploy the functional flower sales website on a reliable hosting environment.
-
----
-
-**Note:** This is a simplified example, and in a real-world scenario, you would need to consider security, scalability, and other factors.
